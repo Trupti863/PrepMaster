@@ -1,0 +1,167 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | PrepMaster{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-header">
+
+    <div>
+
+        <span class="tag">STUDENT DASHBOARD</span>
+
+        <h1>Hello, {{ current_user.username }}! 👋</h1>
+
+        <p>
+            Welcome back! Ready to improve your interview skills?
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="dashboard-section">
+
+    <h2>Choose Your Subject</h2>
+
+    <p>Select a subject to start your interview preparation.</p>
+
+
+    <div class="dashboard-grid">
+
+        <!-- APTITUDE -->
+
+        <div class="dashboard-card">
+
+            <h3>📊 Aptitude</h3>
+
+            <p>
+                Practice percentages, probability, profit and loss,
+                time and work, and more.
+            </p>
+
+            <a href="{{ url_for('generate_quiz', subject='Aptitude') }}"
+               class="primary-btn">
+                Generate Quiz
+            </a>
+
+        </div>
+
+
+        <!-- LOGICAL REASONING -->
+
+        <div class="dashboard-card">
+
+            <h3>🧠 Logical Reasoning</h3>
+
+            <p>
+                Improve analytical thinking, puzzles,
+                series, coding-decoding, and reasoning skills.
+            </p>
+
+            <a href="{{ url_for('generate_quiz', subject='Logical Reasoning') }}"
+               class="primary-btn">
+                Generate Quiz
+            </a>
+
+        </div>
+
+
+        <!-- ENGLISH -->
+
+        <div class="dashboard-card">
+
+            <h3>📚 English</h3>
+
+            <p>
+                Practice grammar, vocabulary,
+                sentence correction, and verbal ability.
+            </p>
+
+            <a href="{{ url_for('generate_quiz', subject='English') }}"
+               class="primary-btn">
+                Generate Quiz
+            </a>
+
+        </div>
+
+
+        <!-- CODING -->
+
+        <div class="dashboard-card">
+
+            <h3>💻 Coding</h3>
+
+            <p>
+                Prepare programming questions,
+                Python, Java, SQL, and technical interviews.
+            </p>
+
+            <a href="{{ url_for('generate_quiz', subject='Coding') }}"
+               class="primary-btn">
+                Generate Quiz
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PERFORMANCE AND HISTORY SECTION -->
+
+<section class="dashboard-section">
+
+    <h2>My Learning Progress</h2>
+
+    <p>
+        Track your quiz performance and review your previous attempts.
+    </p>
+
+    <div class="dashboard-grid">
+
+        <!-- PERFORMANCE REPORT -->
+
+        <div class="dashboard-card">
+
+            <h3>📈 Performance Report</h3>
+
+            <p>
+                View your overall quiz performance, average accuracy,
+                total questions attempted, and best accuracy.
+            </p>
+
+            <a href="{{ url_for('reports') }}"
+               class="primary-btn">
+                View Performance Report
+            </a>
+
+        </div>
+
+
+        <!-- QUIZ HISTORY -->
+
+        <div class="dashboard-card">
+
+            <h3>📋 Quiz History</h3>
+
+            <p>
+                Check your previous quiz attempts, subjects,
+                scores, and total questions.
+            </p>
+
+            <a href="{{ url_for('quiz_history') }}"
+               class="primary-btn">
+                View Quiz History
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

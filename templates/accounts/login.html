@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+
+{% block title %}Login | PrepMaster{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Welcome Back!</h2>
+
+        <p>Login to continue your preparation.</p>
+
+        <form method="POST">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit" class="primary-btn full-width">
+                Login
+            </button>
+
+        </form>
+
+        <p class="auth-link">
+            Don't have an account?
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

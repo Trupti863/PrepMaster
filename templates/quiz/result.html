@@ -1,0 +1,140 @@
+
+{% extends "base.html" %}
+
+{% block title %}Quiz Result | PrepMaster{% endblock %}
+
+{% block content %}
+
+<div class="result-container">
+
+    <!-- RESULT SUMMARY -->
+
+    <div class="result-heading">
+
+        <span class="tag">QUIZ COMPLETED</span>
+
+        <h1>Your Quiz Result</h1>
+
+        <p>
+            {{ subject }} |
+            {{ topic }} |
+            {{ difficulty }}
+        </p>
+
+        <h2>{{ score }} / {{ total }}</h2>
+
+        <p>
+            Percentage:
+            {{ ((score / total) * 100) | round(2) }}%
+        </p>
+
+        {% if score == total %}
+
+            <h3>Excellent! All answers are correct! 🎉</h3>
+
+        {% elif score >= total / 2 %}
+
+            <h3>Good job! Keep practising! 👍</h3>
+
+        {% else %}
+
+            <h3>Keep learning. You can improve! 💪</h3>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ANSWER REVIEW -->
+
+    <h2>Answer Review</h2>
+
+    {% for item in results %}
+
+    <div class="question-card">
+
+        <h3>
+            Question {{ loop.index }}. {{ item.question }}
+        </h3>
+
+        <div class="result-options">
+
+            {% for key, value in item.options.items() %}
+
+                <p>
+
+                    <strong>{{ key }}.</strong>
+                    {{ value }}
+
+                    {% if key == item.correct %}
+
+                        <span class="correct-label">
+                            ✓ Correct Answer
+                        </span>
+
+                    {% endif %}
+
+                    {% if key == item.selected and not item.is_correct %}
+
+                        <span class="wrong-label">
+                            ✗ Your Answer
+                        </span>
+
+                    {% endif %}
+
+                    {% if key == item.selected and item.is_correct %}
+
+                        <span class="correct-label">
+                            ✓ Your Answer
+                        </span>
+
+                    {% endif %}
+
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <p>
+            <strong>Your Answer:</strong>
+
+            {% if item.selected %}
+                {{ item.selected }}
+            {% else %}
+                Not Answered
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Correct Answer:</strong>
+            {{ item.correct }}
+        </p>
+
+        <p>
+            <strong>Explanation:</strong>
+            {{ item.explanation }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+
+    <!-- ACTION BUTTONS -->
+
+    <div class="result-actions">
+
+        <a href="{{ url_for('generate_quiz') }}" class="primary-btn">
+            Try Another Quiz
+        </a>
+
+        <a href="{{ url_for('dashboard') }}" class="secondary-btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

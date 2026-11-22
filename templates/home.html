@@ -1,0 +1,80 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home | PrepMaster{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="tag">AI POWERED LEARNING</span>
+
+        <h1>
+            Prepare Smarter.<br>
+            Interview Better.
+        </h1>
+
+        <p>
+            Improve your interview skills with AI-generated
+            questions, practice tests and instant performance
+            evaluation.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('signup') }}" class="primary-btn">
+                Get Started
+            </a>
+
+            <a href="{{ url_for('login') }}" class="secondary-btn">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <h2>What Can You Practice?</h2>
+
+    <p class="section-description">
+        Choose your preparation area and improve your skills.
+    </p>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Aptitude</h3>
+            <p>Practice percentages, probability, profit and loss.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Logical Reasoning</h3>
+            <p>Improve analytical thinking and problem solving.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>English</h3>
+            <p>Improve grammar, vocabulary and communication.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3>Coding</h3>
+            <p>Practice Python, Java, SQL and programming concepts.</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

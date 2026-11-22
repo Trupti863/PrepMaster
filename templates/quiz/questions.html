@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+
+{% block title %}Take Quiz | PrepMaster{% endblock %}
+
+{% block content %}
+
+<div class="questions-container">
+
+    <div class="quiz-heading">
+
+        <span class="tag">AI GENERATED QUIZ</span>
+
+        <h1>{{ subject }} Quiz</h1>
+
+        <p>
+            Topic: {{ topic }} |
+            Difficulty: {{ difficulty }}
+        </p>
+
+        <p>Select one answer for every question.</p>
+
+    </div>
+
+    <form method="POST" action="{{ url_for('submit_quiz') }}">
+
+        {% for q in questions %}
+
+        <div class="question-card">
+
+            <h3>
+                Question {{ loop.index }}. {{ q.question }}
+            </h3>
+
+            <div class="options-list">
+
+                {% set question_number = loop.index %}
+
+                {% for key, value in q.options.items() %}
+
+                <label class="quiz-option">
+
+                    <input
+                        type="radio"
+                        name="answer_{{ question_number }}"
+                        value="{{ key }}"
+                        required
+                    >
+
+                    <span>
+                        {{ key }}. {{ value }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <button type="submit" class="primary-btn full-width">
+            Submit Quiz
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

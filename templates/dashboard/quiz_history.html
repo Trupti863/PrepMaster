@@ -1,0 +1,162 @@
+
+{% extends "base.html" %}
+
+{% block title %}Quiz History | PrepMaster{% endblock %}
+
+{% block content %}
+
+<section class="history-container">
+
+    <div class="history-heading">
+
+        <span class="tag">MY QUIZ RECORDS</span>
+
+        <h1>Quiz History 📋</h1>
+
+        <p>
+            Review your previous quiz attempts, scores, dates and times.
+        </p>
+
+    </div>
+
+
+    {% if quiz_history %}
+
+        <div class="history-list">
+
+            {% for quiz in quiz_history %}
+
+                <div class="history-card">
+
+                    <!-- QUIZ INFORMATION -->
+
+                    <div class="history-info">
+
+                        <h3>{{ quiz.subject }}</h3>
+
+                        <p>
+                            Quiz ID: {{ quiz.id }}
+                        </p>
+
+                        {% if quiz.created_at %}
+
+                            <p class="history-date">
+                                📅 Date:
+                                {{ quiz.created_at.strftime('%d %B %Y') }}
+                            </p>
+
+                            <p class="history-time">
+                                🕒 Time:
+                                {{ quiz.created_at.strftime('%I:%M %p') }} IST
+                            </p>
+
+                        {% else %}
+
+                            <p class="history-date">
+                                Date and time unavailable
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- QUIZ SCORE -->
+
+                    <div class="history-score">
+
+                        <h2>
+                            {{ quiz.score }} / {{ quiz.total_questions }}
+                        </h2>
+
+                        <p>
+                            {% if quiz.total_questions > 0 %}
+
+                                {{ "%.2f"|format(
+                                    (quiz.score / quiz.total_questions) * 100
+                                ) }}% Accuracy
+
+                            {% else %}
+
+                                0% Accuracy
+
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+
+                    <!-- PERFORMANCE STATUS -->
+
+                    <div class="history-status">
+
+                        {% if quiz.total_questions > 0 and
+                              (quiz.score / quiz.total_questions) >= 0.8 %}
+
+                            <span class="status-excellent">
+                                Excellent
+                            </span>
+
+                        {% elif quiz.total_questions > 0 and
+                                (quiz.score / quiz.total_questions) >= 0.6 %}
+
+                            <span class="status-good">
+                                Good
+                            </span>
+
+                        {% else %}
+
+                            <span class="status-practice">
+                                Keep Practising
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <!-- EMPTY HISTORY -->
+
+        <div class="empty-history">
+
+            <h2>No Quiz History Yet</h2>
+
+            <p>
+                You haven't attempted any quizzes.
+                Generate your first quiz and your results will appear here.
+            </p>
+
+            <a href="{{ url_for('generate_quiz') }}" class="primary-btn">
+                Generate Your First Quiz
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- PAGE ACTIONS -->
+
+    <div class="history-actions">
+
+        <a href="{{ url_for('reports') }}" class="primary-btn">
+            View Performance Report
+        </a>
+
+        <a href="{{ url_for('dashboard') }}" class="secondary-btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

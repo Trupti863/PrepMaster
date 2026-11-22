@@ -1,0 +1,24 @@
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables and API keys
+.env
+.env.*
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Local database files
+instance/*.db
+*.sqlite
+*.sqlite3
+
+# Editor files
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db

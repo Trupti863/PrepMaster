@@ -1,0 +1,111 @@
+
+{% extends "base.html" %}
+
+{% block title %}Performance Report | PrepMaster{% endblock %}
+
+{% block content %}
+
+<section class="report-container">
+
+    <div class="report-heading">
+        <span class="tag">MY PERFORMANCE</span>
+        <h1>Performance Report 📈</h1>
+        <p>Track your learning progress and quiz performance.</p>
+    </div>
+
+
+    <!-- PERFORMANCE STATISTICS -->
+
+    <div class="report-grid">
+
+        <div class="report-card">
+            <h3>📝 Total Quizzes</h3>
+            <h2>{{ total_quizzes }}</h2>
+            <p>Quizzes attempted</p>
+        </div>
+
+        <div class="report-card">
+            <h3>📚 Questions Attempted</h3>
+            <h2>{{ total_questions }}</h2>
+            <p>Total questions answered</p>
+        </div>
+
+        <div class="report-card">
+            <h3>✅ Correct Answers</h3>
+            <h2>{{ total_correct }}</h2>
+            <p>Correct responses</p>
+        </div>
+
+        <div class="report-card">
+            <h3>🎯 Average Accuracy</h3>
+            <h2>{{ average_percentage }}%</h2>
+            <p>Overall accuracy</p>
+        </div>
+
+        <div class="report-card">
+            <h3>🏆 Best Accuracy</h3>
+            <h2>{{ highest_percentage }}%</h2>
+            <p>Highest accuracy in one quiz</p>
+        </div>
+
+    </div>
+
+
+    <!-- PERFORMANCE MESSAGE -->
+
+    <div class="report-summary">
+
+        <h2>Your Learning Progress</h2>
+
+        {% if total_quizzes == 0 %}
+
+            <p>
+                You haven't attempted any quizzes yet.
+                Start your first quiz to see your performance report!
+            </p>
+
+        {% elif average_percentage >= 80 %}
+
+            <p>
+                Excellent work! Your overall accuracy is very good.
+                Keep practising to maintain your performance.
+            </p>
+
+        {% elif average_percentage >= 60 %}
+
+            <p>
+                Good progress! Keep practising regularly to improve
+                your accuracy and confidence.
+            </p>
+
+        {% else %}
+
+            <p>
+                Keep learning and practising. Review your incorrect
+                answers and attempt more quizzes to improve.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="report-actions">
+
+        <a href="{{ url_for('quiz_history') }}" class="primary-btn">
+            View Quiz History
+        </a>
+
+        <a href="{{ url_for('generate_quiz') }}" class="secondary-btn">
+            Attempt New Quiz
+        </a>
+
+        <a href="{{ url_for('dashboard') }}" class="secondary-btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
